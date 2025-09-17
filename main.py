@@ -14,6 +14,7 @@ def main():
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
+    score = 0
     dt = 0
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
@@ -40,12 +41,14 @@ def main():
         for obj in asteroids:
             if player.collide(obj):
                 print("Game over!")
+                print("Final score:", score)
                 sys.exit()
             
             for shot in shots:
                 if obj.collide(shot):
                     shot.kill()
                     obj.split()
+                    score += 10
             
         dt = clock.tick(60) / 1000  # Limit to 60 FPS
         
