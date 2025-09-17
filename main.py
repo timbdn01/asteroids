@@ -1,3 +1,4 @@
+import sys
 import pygame
 from constants import *
 from player import Player
@@ -30,6 +31,10 @@ def main():
             obj.draw(screen)
 
         pygame.display.flip()
+        for obj in asteroids:
+            if player.collide(obj):
+                print("Game over!")
+                sys.exit()
         dt = clock.tick(60) / 1000  # Limit to 60 FPS
         
     print("Starting Asteroids!")
